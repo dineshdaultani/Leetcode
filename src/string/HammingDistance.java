@@ -3,31 +3,27 @@ package string;
 public class HammingDistance {
 
 	public int hammingDistance(int x, int y) {
-		String str_x = String.format("%31s", Integer.toBinaryString(x)).replace(" ", "0");
-	    String str_y = String.format("%31s", Integer.toBinaryString(y)).replace(" ", "0");
-	    int distance = 0;
-	    
-	    int index_x = str_x.length() - 1, index_y = str_y.length() - 1;
-	    
-	    while(index_x >= 0 && index_y >= 0){
-	    	if(str_x.charAt(index_x) != str_y.charAt(index_y))
-	    		distance++;
-	    	index_x--; index_y--;
-	    }
-	    
-	    for(int i = index_x; i >= 0; i--){
-	    	if(str_x.charAt(i) == 1)
-	    		distance++;
-	    }
-	    for(int j = index_y; j >= 0; j--){
-	    	if(str_y.charAt(j) == 1)
-	    		distance++;
-	    }	
+		int distance = 0;
+        int power_2 = 1;
+        int rem_x, rem_y;
+        while(x > 0 || y > 0)
+        { 
+            rem_x = x % power_2;
+            rem_y = y % power_2;
+            x = x / power_2;
+            y = y / power_2;
+            
+            if(rem_x != rem_y)
+                distance++;
+            power_2 = power_2 * 2;
+        }
+        
+        
 	    return distance;
 	}
 	public static void main(String[] args) {
 		HammingDistance hd = new HammingDistance();
-		
+		System.out.println(Math.pow(2,22));
 		int x = 680142203, y = 1111953568;
 		System.out.println(hd.hammingDistance(x, y));
 		
