@@ -2,11 +2,8 @@ package string;
 
 public class Rev_String {
     public String reverseString(String s) {
-        String str = "";
-        for (int i = s.length() - 1; i >=0; i--){
-        	str += s.charAt(i);
-        }
-        return str;
+        StringBuilder str = new StringBuilder(s);
+        return str.reverse().toString(); 
     }
     
     public static void main(String args[]){
